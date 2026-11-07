@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eventora | Discover & Register for Upcoming Events</title>
+  <meta name="description" content="Eventora - discover, explore and register for conferences, concerts, workshops and festivals near you." />
+  <meta name="theme-color" content="#6c5ce7" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Eventora | Event Management" />
+  <meta property="og:description" content="Browse upcoming events, search, filter and book your spot in seconds." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div id="progressBar" class="progress" aria-hidden="true"></div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Eventora home"><img src="assets/favicon.svg" alt="" width="30" height="30" /><b class="wordmark">Event<span>ora</span></b></a>
+      <nav id="navLinks" class="nav-links" aria-label="Main navigation">
+        <a href="#home" class="active">Home</a>
+        <a href="#events">Events</a>
+        <a href="#how">How it works</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="my-tickets.html" class="tickets-link">🎟️ My Tickets <span id="ticketCount" class="count" hidden>0</span></a>
+      </nav>
+      <div class="nav-actions">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">🌙</button>
+        <button id="menuToggle" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="blob b1" aria-hidden="true"></div>
+      <div class="blob b2" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <p class="badge">✨ 10+ events live this season</p>
+        <h1>Discover &amp; Register for <span class="gradient-text">Amazing Events</span></h1>
+        <p class="hero-sub">Conferences, concerts, workshops and festivals. Browse upcoming events, find what you love and book your spot in seconds.</p>
+
+        <form id="heroSearch" class="hero-search" role="search">
+          <label for="heroQuery" class="sr-only">Search events</label>
+          <input id="heroQuery" type="search" placeholder="Search events, venues or cities..." autocomplete="off" />
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <div class="hero-buttons">
+          <a href="#events" class="btn btn-primary">Explore Events</a>
+          <a href="#how" class="btn btn-outline">How it works</a>
+        </div>
+
+        <div class="hero-stats">
+          <div><strong data-count="50" data-suffix="+">0</strong><span>Events</span></div>
+          <div><strong data-count="10000" data-suffix="+">0</strong><span>Attendees</span></div>
+          <div><strong data-count="20" data-suffix="+">0</strong><span>Cities</span></div>
+          <div><strong data-count="98" data-suffix="%">0</strong><span>Happy users</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="section">
+      <div class="container">
+        <h2 class="section-title">Upcoming &amp; Featured Events</h2>
+        <p class="section-sub">Search by name, venue or city, then filter and sort to find your perfect event.</p>
+
+        <div class="toolbar">
+          <div class="search-wrap">
+            <label for="searchInput" class="sr-only">Search events</label>
+            <input type="search" id="searchInput" placeholder="🔍 Search events, venue or city..." autocomplete="off" />
+          </div>
+          <div id="categoryFilters" class="chips" role="group" aria-label="Filter by category"></div>
+          <div class="selects">
+            <label>Price
+              <select id="priceSelect">
+                <option value="all">All prices</option>
+                <option value="free">Free only</option>
+                <option value="paid">Paid only</option>
+              </select>
+            </label>
+            <label>Sort by
+              <select id="sortSelect">
+                <option value="soonest">Soonest first</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+                <option value="filling">Filling fast</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <p id="resultCount" class="result-count" aria-live="polite"></p>
+        <div id="eventsGrid" class="grid" aria-busy="true"></div>
+
+        <div id="noResults" class="empty" hidden>
+          <div class="empty-ico">😕</div>
+          <h3>No events found</h3>
+          <p class="muted">Try a different keyword, category or price filter.</p>
+          <button id="resetFilters" type="button" class="btn btn-outline">Reset filters</button>
+        </div>
+        <div class="center"><button id="loadMore" type="button" class="btn btn-outline" hidden>Load more events</button></div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section alt">
+      <div class="container">
+        <h2 class="section-title">How it works</h2>
+        <p class="section-sub">Three simple steps from browsing to booking.</p>
+        <div class="steps">
+          <div class="step reveal"><b>1</b><h3>Discover</h3><p>Browse featured events or search by name, venue and city.</p></div>
+          <div class="step reveal"><b>2</b><h3>Choose</h3><p>Open an event to see the schedule, venue, price and live seat availability.</p></div>
+          <div class="step reveal"><b>3</b><h3>Register</h3><p>Fill a short validated form and get your ticket instantly.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">Why Eventora?</h2>
+        <p class="section-sub">Built with great UI/UX, speed and accessibility in mind.</p>
+        <div class="features">
+          <div class="feature reveal"><span>⚡</span><h3>Fast Registration</h3><p>Register in under a minute with real-time form validation.</p></div>
+          <div class="feature reveal"><span>📱</span><h3>Fully Responsive</h3><p>Pixel-perfect on mobiles, tablets and desktops.</p></div>
+          <div class="feature reveal"><span>🎯</span><h3>Smart Filters</h3><p>Search, category, price and sort controls to find the right event.</p></div>
+          <div class="feature reveal"><span>🌙</span><h3>Dark &amp; Light Mode</h3><p>Switch themes anytime; your choice is remembered.</p></div>
+          <div class="feature reveal"><span>📆</span><h3>Add to Calendar</h3><p>Download an .ics file and never miss an event.</p></div>
+          <div class="feature reveal"><span>🎟️</span><h3>My Tickets</h3><p>View and manage all registrations saved in your browser.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section alt" aria-labelledby="tTitle">
+      <div class="container">
+        <h2 id="tTitle" class="section-title">Loved by attendees</h2>
+        <div class="features">
+          <figure class="quote reveal"><blockquote>“Booking took less than a minute. The countdown and calendar reminder were a great touch!”</blockquote><figcaption>— Ananya R., Bhubaneswar</figcaption></figure>
+          <figure class="quote reveal"><blockquote>“Clean design and so easy to filter events. Found a free workshop instantly.”</blockquote><figcaption>— Rahul M., Hyderabad</figcaption></figure>
+          <figure class="quote reveal"><blockquote>“Works perfectly on my phone and the dark mode is lovely at night.”</blockquote><figcaption>— Sneha P., Bengaluru</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container narrow">
+        <h2 class="section-title">Frequently asked questions</h2>
+        <div class="faq">
+          <details><summary>Is registration free?</summary><p>Registering is free. Some events have a ticket price shown on the event card; free events are marked “Free”.</p></details>
+          <details><summary>Where is my registration saved?</summary><p>Registrations are saved in your browser's Local Storage and listed on the “My Tickets” page.</p></details>
+          <details><summary>Can I cancel a registration?</summary><p>Yes. Open “My Tickets” and press Cancel on any booking.</p></details>
+          <details><summary>Can I add an event to my calendar?</summary><p>Yes. Use the “Add to calendar” button on any event page to download an .ics file.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section alt">
+      <div class="container contact-grid">
+        <div>
+          <h2 class="section-title left">Get in touch</h2>
+          <p class="muted">Have a question or want to host your event on Eventora? Send us a message.</p>
+          <ul class="contact-list">
+            <li>📧 hello@eventora.example</li>
+            <li>📞 +91 98765 43210</li>
+            <li>📍 Bhubaneswar, Odisha, India</li>
+          </ul>
+        </div>
+        <form id="contactForm" class="card-form" novalidate>
+          <div class="form-group"><label for="cName">Your name</label><input id="cName" name="name" type="text" autocomplete="name" /><small class="error" role="alert"></small></div>
+          <div class="form-group"><label for="cEmail">Email</label><input id="cEmail" name="email" type="email" autocomplete="email" /><small class="error" role="alert"></small></div>
+          <div class="form-group"><label for="cMsg">Message</label><textarea id="cMsg" name="message" rows="4"></textarea><small class="error" role="alert"></small></div>
+          <button type="submit" class="btn btn-primary full">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <a href="index.html" class="logo"><b class="wordmark">Event<span>ora</span></b></a>
+        <p>Making event discovery simple and beautiful.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#events">Events</a><br /><a href="#how">How it works</a><br /><a href="my-tickets.html">My Tickets</a>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <form id="newsletterForm" class="news" novalidate>
+          <div class="form-group"><label for="nEmail" class="sr-only">Email</label><input id="nEmail" name="email" type="email" placeholder="you@example.com" /><small class="error" role="alert"></small></div>
+          <button class="btn btn-primary small" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <p class="copy">© <span id="year">2026</span> Eventora. Built for K Explore – Web Designing.</p>
+  </footer>
+
+  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
+
+  <script src="js/common.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

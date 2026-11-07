@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Tickets | Eventora</title>
+  <meta name="description" content="View and manage your Eventora registrations." />
+  <meta name="theme-color" content="#6c5ce7" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div id="progressBar" class="progress" aria-hidden="true"></div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo" aria-label="Eventora home"><img src="assets/favicon.svg" alt="" width="30" height="30" /><b class="wordmark">Event<span>ora</span></b></a>
+      <nav id="navLinks" class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#events">Events</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="my-tickets.html" class="tickets-link active">🎟️ My Tickets <span id="ticketCount" class="count" hidden>0</span></a>
+      </nav>
+      <div class="nav-actions">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">🌙</button>
+        <button id="menuToggle" class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container detail-wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a> / <span>My Tickets</span></nav>
+    <h1 class="page-title">🎟️ My Tickets</h1>
+
+    <div id="ticketsToolbar" class="tickets-toolbar" hidden>
+      <p id="ticketSummary" class="muted"></p>
+      <button id="clearAll" type="button" class="btn btn-danger small">Clear all</button>
+    </div>
+
+    <div id="ticketList" class="ticket-list"></div>
+
+    <div id="emptyTickets" class="empty" hidden>
+      <div class="empty-ico">🎫</div>
+      <h2>No tickets yet</h2>
+      <p class="muted">Register for an event and your tickets will show up here.</p>
+      <a class="btn btn-primary" href="index.html#events">Browse events</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="copy">© <span id="year">2026</span> Eventora. Built for K Explore – Web Designing.</p>
+  </footer>
+
+  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
+
+  <script src="js/common.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/tickets.js"></script>
+</body>
+</html>
